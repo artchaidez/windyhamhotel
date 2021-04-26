@@ -1,50 +1,51 @@
-DROP TABLE Guest CASCADE CONSTRAINTS;
-DROP TABLE Reservation;
-DROP TABLE Employee CASCADE CONSTRAINTS;
-DROP TABLE Room;
+--DROP TABLE Guest CASCADE CONSTRAINTS;
+--DROP TABLE Reservation;
+--DROP TABLE Employee CASCADE CONSTRAINTS;
+--DROP TABLE Room;
 
 /* TODO: Discuss primary/ foreign keys for these tables. 
 Depends how Java code designed. Certain vars may need to be changed. */
 
---name may be separated to two varchars: firstName and lastName
 CREATE TABLE Guest (
     id int,
-    name varchar(25), 
+    first_name varchar(15), 
+    last_name varchar(15), 
     email varchar(25),
     phone varchar(15),
+    payment_info int, --Still discussing how this works
     PRIMARY KEY (id)
-)
+);
 
-/* TODO: var room is a foreign reference to Table Room. 
-Room currently a string, it needs to match room_number (int) in Table Room*/
+CREATE TABLE Room (
+    room_number int,
+    type varchar(15),   
+    price NUMERIC(6,2), --NOTE: may need to be changed
+    description varchar(30), 
+    status varchar(10), --MARK: may be changed to Bool
+    PRIMARY KEY (room_number)
+);
+
 CREATE TABLE Reservation (
-    id int,
+    r_id int,
+    guest_id int,
     adult int,
     children int,
     checkin date,
     checkout date,
-    room varchar(10), --MARK: may be changed to room_number int,
-    guest varchar(20),
-    --FOREIGN KEY (room_number) REFERENCES Room(room_number),
-    FOREIGN KEY (id) REFERENCES Guest(id)
-)
+    room_number int, 
+    guest varchar(30), --NOTE: just the person's name
+    PRIMARY KEY (r_id),
+    FOREIGN KEY (guest_id) REFERENCES Guest(id),
+    FOREIGN KEY (room_number) REFERENCES Room(room_number)
+);
 
+-- TODO: Payroll info
 CREATE TABLE Employee (
     id int,
+    --position varchar(20),
     password varchar(25),
     PRIMARY KEY (id) 
-)
+);
 
-/* TODO: Discuss what id and room_number are.
-Do not think Table id is related to Guest ID*/
-CREATE TABLE Room (
-    id int,
-    room_number int,
-    type varchar(15),
-    price NUMERIC(6,2), --NOTE: may need to be changed
-    description varchar(30), -- NOTE: unsure on how long description can be
-    status varchar(10), --MARK: may be changed to Bool
-    PRIMARY KEY (room_number)
-)
 
 
