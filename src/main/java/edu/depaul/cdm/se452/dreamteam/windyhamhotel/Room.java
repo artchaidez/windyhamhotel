@@ -11,7 +11,4 @@ public class Room extends Reservation
     public String   room_type;
     public String   room_description;
     public Boolean  room_status;
-
-
-
 }

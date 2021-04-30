@@ -2,29 +2,72 @@ package edu.depaul.cdm.se452.dreamteam.windyhamhotel;
 
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 public class Employee implements Booking
 {
 
-    public void makeReservation()
+    /*
+        ----  makeReservation() ----
+        Makes a reservation and adds the data to the database after being passed all the data from the Front End
+
+        TODO:: Make this send the data to the database, receive it from the Front End
+     */
+
+    public void makeReservation(int id, int adult, int child, LocalDate checkIn, LocalDate checkOut, Room room, Guest guest)
+    {
+        //This can be implemented the same way that we implement it in Reservation
+
+
+    }
+
+
+    /*
+        ---- updateReservation() ----
+        Updates an existing reservation - takes in all of the data, compares it to what is currently in our database to
+        figure out what needs to be changed.
+
+        TODO:: Make this send the data to the database, receive it from the Front End
+         Takes in ID# of the order so it knows what order to update
+     */
+
+    public void updateReservation(int id)
     {
 
     }
 
-    public void updateReservation()
+
+    /*
+        ---- cancelReservation() ----
+        Cancels a reservation given the ID by deleting it from our database
+
+        TODO:: Delete data from our Database given the ID# of the Order
+         Takes in ID# of the order so it knows what order to cancel
+     */
+
+    public void cancelReservation(int id)
     {
 
     }
 
-    public void cancelReservation()
-    {
 
-    }
+    /*
+        ---- signIn() ----
+        Validates that the email and password given to us match what is in our DB
+
+        TODO:: Make this send the data to the database, receive it from the Front End
+         Should basically just be a verification check that the email and password match what's in our Database
+     */
 
     public void signIn(String email, String password)
     {
 
     }
+
+
+    //TODO:: placeholder
+    //As said in Reservation.java, this seems unnecessary (and wrong?) to handle on the back end
 
     public void signOut()
     {
