@@ -43,7 +43,7 @@ public class Reservation implements Booking, Serializable
         TODO:: Make this send the data to the database, receive it from the Front End
      */
 
-    public void makeReservation(int id, int adult, int child, LocalDate checkIn, LocalDate checkOut, Room room, Guest guest)
+    public void makeReservation(int reservation_id, int adult, int child, LocalDate checkIn, LocalDate checkOut, int room_number, int guest_id)
     {
         /*
             TODO:: We need to decide if we want to do data validation on the front end or at this step. If we want to do
@@ -63,7 +63,7 @@ public class Reservation implements Booking, Serializable
          Takes in ID# of the order so it knows what order to update
      */
 
-    public void updateReservation(int id)
+    public void updateReservation(int reservation_id)
     {
         /*
             TODO:: Not sure what data exactly is going to be updated, one way we could do it is take in all of the data
@@ -81,7 +81,7 @@ public class Reservation implements Booking, Serializable
          Takes in ID# of the order so it knows what order to cancel
      */
 
-    public void cancelReservation(int id) //Shouldn't need anything other than the ID to cancel the order
+    public void cancelReservation(int reservation_id) //Shouldn't need anything other than the ID to cancel the order
 
     {
 

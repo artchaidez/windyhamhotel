@@ -4,16 +4,16 @@ import java.time.LocalDate;
 
 public interface Booking
 {
-    public void makeReservation(int         id,
+    public void makeReservation(int         reservation_id,
                                 int         adult,
                                 int         child,
                                 LocalDate   checkIn,
                                 LocalDate   checkOut,
-                                Room        room,
-                                Guest       guest);
+                                int         room_number,
+                                int         guest_id);
 
-    public void updateReservation(int id);
-    public void cancelReservation(int id);
+    public void updateReservation(int reservation_id);
+    public void cancelReservation(int reservation_id);
     public void signIn(String email, String password);
     public void signOut();
 }

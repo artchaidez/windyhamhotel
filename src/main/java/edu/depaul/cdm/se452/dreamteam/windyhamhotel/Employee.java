@@ -26,7 +26,7 @@ public class Employee implements Booking
         TODO:: Make this send the data to the database, receive it from the Front End
      */
 
-    public void makeReservation(int id, int adult, int child, LocalDate checkIn, LocalDate checkOut, Room room, Guest guest)
+    public void makeReservation(int reservation_id, int adult, int child, LocalDate checkIn, LocalDate checkOut, int room_number, int guest_id)
     {
         //This can be implemented the same way that we implement it in Reservation
 
@@ -43,7 +43,7 @@ public class Employee implements Booking
          Takes in ID# of the order so it knows what order to update
      */
 
-    public void updateReservation(int id)
+    public void updateReservation(int reservation_id)
     {
 
     }
@@ -57,7 +57,7 @@ public class Employee implements Booking
          Takes in ID# of the order so it knows what order to cancel
      */
 
-    public void cancelReservation(int id)
+    public void cancelReservation(int reservation_id)
     {
 
     }
