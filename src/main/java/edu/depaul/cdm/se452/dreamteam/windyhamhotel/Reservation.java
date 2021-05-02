@@ -1,18 +1,39 @@
 package edu.depaul.cdm.se452.dreamteam.windyhamhotel;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Data
-public class Reservation implements Booking
+@Entity
+@Table(name = "Reservation")
+public class Reservation implements Booking, Serializable
 {
-    public int          id;
+    @Id
+    @GeneratedValue
+    @Column(name = "reservation_id")
+    public int          reservation_id;
+
+    @Column(name = "adult")
     public int          adult;
+
+    @Column(name = "child")
     public int          child;
+
+    /*
+        TODO:: Might have to find a way to either change this so that the date
+         datatype works with the DB or find out a way to convert between the two
+     */
     public LocalDate    checkIn;
     public LocalDate    checkOut;
-    public Room         room;
-    public Guest        guest;
+
+    @Column(name = "room_number")
+    public int          room_number;
+
+    @Column(name = "guest_id")
+    public int          guest_id;
 
 
     /*

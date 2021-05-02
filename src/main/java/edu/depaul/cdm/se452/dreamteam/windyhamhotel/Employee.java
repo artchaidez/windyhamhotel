@@ -2,11 +2,22 @@ package edu.depaul.cdm.se452.dreamteam.windyhamhotel;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
+@Entity
+@Table(name = "Employee")
 public class Employee implements Booking
 {
+    @Id
+    @GeneratedValue
+    @Column(name = "employee_id")
+    public int employee_id;
+
+    @Column(name = "password")
+    private String password;
+
 
     /*
         ----  makeReservation() ----
