@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.dreamteam.windyhamhotel;
+package edu.depaul.cdm.se452.dreamteam.windyhamhotel.entity;
 
 import lombok.Data;
 

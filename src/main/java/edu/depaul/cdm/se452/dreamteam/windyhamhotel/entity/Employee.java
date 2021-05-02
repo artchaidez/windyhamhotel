@@ -1,39 +1,22 @@
-package edu.depaul.cdm.se452.dreamteam.windyhamhotel;
+package edu.depaul.cdm.se452.dreamteam.windyhamhotel.entity;
 
-import java.io.Serializable;
-import java.time.LocalDate;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "Reservation")
-public class Reservation implements Booking, Serializable
+@Table(name = "Employee")
+public class Employee implements Booking
 {
     @Id
     @GeneratedValue
-    @Column(name = "reservation_id")
-    public int          reservation_id;
+    @Column(name = "employee_id")
+    public int employee_id;
 
-    @Column(name = "adult")
-    public int          adult;
-
-    @Column(name = "child")
-    public int          child;
-
-    /*
-        TODO:: Might have to find a way to either change this so that the date
-         datatype works with the DB or find out a way to convert between the two
-     */
-    public LocalDate    checkIn;
-    public LocalDate    checkOut;
-
-    @Column(name = "room_number")
-    public int          room_number;
-
-    @Column(name = "guest_id")
-    public int          guest_id;
+    @Column(name = "password")
+    private String password;
 
 
     /*
@@ -45,10 +28,7 @@ public class Reservation implements Booking, Serializable
 
     public void makeReservation(int id, int adult, int child, LocalDate checkIn, LocalDate checkOut, Room room, Guest guest)
     {
-        /*
-            TODO:: We need to decide if we want to do data validation on the front end or at this step. If we want to do
-             it here, check all the data and if it's good then add it to the DB - else just assume it's good and add to DB
-         */
+        //This can be implemented the same way that we implement it in Reservation
 
 
     }
@@ -65,10 +45,6 @@ public class Reservation implements Booking, Serializable
 
     public void updateReservation(int id)
     {
-        /*
-            TODO:: Not sure what data exactly is going to be updated, one way we could do it is take in all of the data
-             and compare it to what's in our DB currently.
-         */
 
     }
 
@@ -81,8 +57,7 @@ public class Reservation implements Booking, Serializable
          Takes in ID# of the order so it knows what order to cancel
      */
 
-    public void cancelReservation(int id) //Shouldn't need anything other than the ID to cancel the order
-
+    public void cancelReservation(int id)
     {
 
     }
@@ -98,16 +73,17 @@ public class Reservation implements Booking, Serializable
 
     public void signIn(String email, String password)
     {
-        //TODO:: *NOTE* Maybe should be changed to return Boolean
+
     }
 
 
     //TODO:: placeholder
-    //Not sure this is necessary? I think this would be just a front end thing - not something we have to handle here
+    //As said in Reservation.java, this seems unnecessary (and wrong?) to handle on the back end
 
     public void signOut()
     {
 
     }
+
 
 }
