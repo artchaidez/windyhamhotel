@@ -5,8 +5,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "rooms")
 public class Room {
+
     @Id
     private int room_number;
 
