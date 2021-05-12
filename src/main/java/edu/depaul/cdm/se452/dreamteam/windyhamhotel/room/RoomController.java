@@ -1,21 +1,38 @@
-package edu.depaul.cdm.se452.dreamteam.windyhamhotel.controller;
+package edu.depaul.cdm.se452.dreamteam.windyhamhotel.room;
 
 
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.entity.Room;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.exception.ResourceNotFoundException;
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/rooms")
+@CrossOrigin(origins = "http://localhost:8081")
 public class RoomController {
 
     @Autowired
     private RoomRepository roomRepository;
+
+    @GetMapping("/available")
+    public List<Room> getAvaiableRoomAndType() {
+        Map<String, Room> availableRooms = new HashMap<>();
+        List<Room> rooms = getAllRooms();
+
+        for (Room room : rooms) {
+            if (!availableRooms.containsKey(room.getRoom_type()) && room.getRoom_status() == "Vacant") {
+                availableRooms.put(room.getRoom_type(),room);
+            }
+        }
+
+        List<Room> differentTypeRooms = new ArrayList<>(availableRooms.values());
+        return differentTypeRooms;
+    }
 
     // get all rooms
     @GetMapping

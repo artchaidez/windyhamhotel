@@ -1,6 +1,5 @@
-package edu.depaul.cdm.se452.dreamteam.windyhamhotel.repository;
+package edu.depaul.cdm.se452.dreamteam.windyhamhotel.Reservation;
 
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.entity.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,10 +1,11 @@
-package edu.depaul.cdm.se452.dreamteam.windyhamhotel.entity;
+package edu.depaul.cdm.se452.dreamteam.windyhamhotel.room;
 
 import lombok.Data;
 import javax.persistence.*;
 
 @Data
 @Entity
+@Table(name = "rooms")
 public class Room {
 
     @Id

@@ -1,11 +1,16 @@
-package edu.depaul.cdm.se452.dreamteam.windyhamhotel.entity;
+package edu.depaul.cdm.se452.dreamteam.windyhamhotel.Reservation;
 
 import java.io.Serializable;
+
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.bill.Bill;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
 import lombok.Data;
 import javax.persistence.*;
 
 @Data
 @Entity
+@Table(name = "reservations")
 public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,28 +22,29 @@ public class Reservation implements Serializable {
     private String checkin;
     private String checkout;
 
-    // should be an object (Room room)
-    private int room_number;
+    private int room_id;
 
-    // should be an object (Guest guest)
-    private int guest_id;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Guest guest_id;
 
-    private double amount;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Bill bill;
 
 
-    public Reservation(int adult, int child, int days, String checkin, String checkout, int room_number, int guest_id, double amount) {
+    public Reservation(int adult, int child, int days, String checkin, String checkout, int room_id, Guest guest_id, Bill bill) {
         this.adult = adult;
         this.child = child;
         this.days = days;
         this.checkin = checkin;
         this.checkout = checkout;
-        this.room_number = room_number;
+        this.room_id = room_id;
         this.guest_id = guest_id;
-        this.amount = amount;
+        this.bill = bill;
     }
 
-    public Reservation() { }
+    public Reservation() {
 
+    }
 
     public long getReservation_id() {
         return reservation_id;
@@ -88,27 +94,27 @@ public class Reservation implements Serializable {
         this.checkout = checkout;
     }
 
-    public int getRoom_number() {
-        return room_number;
+    public int getRoom_id() {
+        return room_id;
     }
 
-    public void setRoom_number(int room_number) {
-        this.room_number = room_number;
+    public void setRoom_id(int room_id) {
+        this.room_id = room_id;
     }
 
-    public int getGuest_id() {
+    public Guest getGuest_id() {
         return guest_id;
     }
 
-    public void setGuest_id(int guest_id) {
+    public void setGuest_id(Guest guest_id) {
         this.guest_id = guest_id;
     }
 
-    public double getAmount() {
-        return amount;
+    public Bill getBill() {
+        return bill;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setBill(Bill bill) {
+        this.bill = bill;
     }
 }
