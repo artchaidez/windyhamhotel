@@ -1,5 +1,7 @@
-package edu.depaul.cdm.se452.dreamteam.windyhamhotel.entity;
+package edu.depaul.cdm.se452.dreamteam.windyhamhotel.employee;
 
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,8 +10,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "Employee")
-public class Employee implements Booking
-{
+public class Employee {
     @Id
     @GeneratedValue
     @Column(name = "employee_id")
