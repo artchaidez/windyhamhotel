@@ -29,14 +29,13 @@ public class EmployeeController
     @GetMapping("/{id}")
     public Employee getEmployeeById(@PathVariable(value = "id") int employeeId)
     {
-        System.out.println("getEmployeeByID");
         return this.employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + employeeId));
     }
 
     // add employee
     @PostMapping
-    public Employee addNewEmployee(@RequestBody Employee employee) 
+    public Employee createNewEmployee(@RequestBody Employee employee) 
     {
         return this.employeeRepository.save(employee);
     }
@@ -48,11 +47,12 @@ public class EmployeeController
         Employee existingEmployee = this.employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + employeeId));
 
-        existingEmployee.setEmployee_id(employee.getEmployee_id());
-        existingEmployee.setPassword(employee.getPassword());
-        existingEmployee.setName(employee.getName());
-        existingEmployee.setSalary(employee.getSalary());
-        existingEmployee.setPosition(employee.getPosition());
+        // NOTE: Might not need all this.
+        //existingEmployee.setEmployee_id(employee.getEmployee_id());
+        //existingEmployee.setPassword(employee.getPassword());
+        //existingEmployee.setName(employee.getName());
+        //existingEmployee.setSalary(employee.getSalary());
+        //existingEmployee.setPosition(employee.getPosition());
         // TODO: update Department
         // TODO: update Account
         //existingEmployee.setContact(employee.getContact());

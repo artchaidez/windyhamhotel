@@ -2,16 +2,19 @@ package edu.depaul.cdm.se452.dreamteam.windyhamhotel.contact;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 // Note: Is contact going to work like Bill, where it is part of Reservations?
 // Contact must work for both Guest and Employee? 
 @Entity
 @Data
-public class Contact 
+@Table(name = "contact")
+public class Contact implements Serializable
 {
+    //do not use @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String name;
     private String address;
     private String birth;
