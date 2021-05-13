@@ -1,5 +1,6 @@
 package edu.depaul.cdm.se452.dreamteam.windyhamhotel.employee;
 
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.contact.Contact;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
 import lombok.Data;
@@ -12,79 +13,92 @@ import java.time.LocalDate;
 @Table(name = "Employee")
 public class Employee {
     @Id
-    @GeneratedValue
-    @Column(name = "employee_id")
     public int employee_id;
 
-    @Column(name = "password")
     private String password;
-
-
-    /*
-        ----  makeReservation() ----
-        Makes a reservation and adds the data to the database after being passed all the data from the Front End
-
-        TODO:: Make this send the data to the database, receive it from the Front End
-     */
-
-    public void makeReservation(int id, int adult, int child, LocalDate checkIn, LocalDate checkOut, Room room, Guest guest)
-    {
-        //This can be implemented the same way that we implement it in Reservation
-
-
-    }
-
+    private String name;
+    private Double salary;
+    private String position;
+    //private Department department;
+    //private Account Account;
 
     /*
-        ---- updateReservation() ----
-        Updates an existing reservation - takes in all of the data, compares it to what is currently in our database to
-        figure out what needs to be changed.
+    @OneToOne(cascade = CascadeType.ALL)
+    private Guest guest_id; */
 
-        TODO:: Make this send the data to the database, receive it from the Front End
-         Takes in ID# of the order so it knows what order to update
-     */
+    // Contact needs to work as shown above
+    //private Contact contact;
 
-    public void updateReservation(int id)
+    // TODO: add contact after employee works
+    public Employee(int employee_id, String password, String name, Double salary, String position) 
     {
+        this.employee_id = employee_id;
+        this.password = password;
+        this.name = name;
+        this.salary = salary;
+        this.position = position;
+        //this.contact = contact;
+    }
+
+    public Employee(){
 
     }
 
-
+    //public int employee_id;
+    public int getEmployee_id()
+    {
+        return employee_id;
+    }
+    public void setEmployee_id(int employee_id)
+    {
+        this.employee_id = employee_id;
+    }
+    //private String password;
+    public String getPassword()
+    {
+        return password;
+    }
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+    //private String name;
+    public String getName()
+    {
+        return name;
+    }
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+    //private Double salary;
+    public Double getSalary()
+    {
+        return salary;
+    }
+    public void setSalary(Double salary)
+    {
+        this.salary = salary;
+    }
+    //private String position;
+    public String getPosition()
+    {
+        return position;
+    }
+    public void setPosition(String position)
+    {
+        this.position = position;
+    }
+    //private Contact contact;
     /*
-        ---- cancelReservation() ----
-        Cancels a reservation given the ID by deleting it from our database
-
-        TODO:: Delete data from our Database given the ID# of the Order
-         Takes in ID# of the order so it knows what order to cancel
-     */
-
-    public void cancelReservation(int id)
+    public Contact getContact()
     {
-
+        return contact;
     }
-
-
-    /*
-        ---- signIn() ----
-        Validates that the email and password given to us match what is in our DB
-
-        TODO:: Make this send the data to the database, receive it from the Front End
-         Should basically just be a verification check that the email and password match what's in our Database
-     */
-
-    public void signIn(String email, String password)
+    public void setContact(Contact contact)
     {
-
+        this.contact = contact;
     }
-
-
-    //TODO:: placeholder
-    //As said in Reservation.java, this seems unnecessary (and wrong?) to handle on the back end
-
-    public void signOut()
-    {
-
-    }
-
-
+    */
+    
 }
