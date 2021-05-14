@@ -40,7 +40,6 @@ public class EmployeeController
         return this.employeeRepository.save(employee);
     }
     
-    // TODO: update Department and Account when these tables are complete
     @PutMapping("/{id}")
     public Employee updateEmployee(@RequestBody Employee employee, @PathVariable(value = "id") int employeeId)
     {
@@ -53,14 +52,13 @@ public class EmployeeController
         //existingEmployee.setName(employee.getName());
         //existingEmployee.setSalary(employee.getSalary());
         //existingEmployee.setPosition(employee.getPosition());
-        // TODO: update Department
-        // TODO: update Account
+        
         //existingEmployee.setContact(employee.getContact());
 
         return this.employeeRepository.save(existingEmployee);
     }
 
-    // TODO: delete employee
+    // delete employee
     @DeleteMapping("/{id}")
     public ResponseEntity<Employee> deleteEmployee(@PathVariable(value = "id") int employeeId)
     {

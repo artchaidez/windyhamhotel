@@ -32,5 +32,4 @@ public class ContactController
     }
 
     // NOTE: Contact only made when employee made?
-    // Most likely needs way to update, use name as id
 }

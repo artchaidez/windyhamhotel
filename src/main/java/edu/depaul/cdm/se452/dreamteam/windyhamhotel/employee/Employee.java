@@ -1,14 +1,13 @@
 package edu.depaul.cdm.se452.dreamteam.windyhamhotel.employee;
 
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.account.Account;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.contact.Contact;
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
-import lombok.Data;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.department.Department;
 
+import lombok.Data;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @Data
 @Entity
@@ -23,20 +22,18 @@ public class Employee implements Serializable
     private String name;
     private Double salary;
     private String position;
-    //private Department department;
-    //private Account Account;
-
-    /*
-    @OneToOne(cascade = CascadeType.ALL)
-    private Guest guest_id; */
 
     @OneToOne(cascade = CascadeType.ALL)
     private Contact contact; 
 
-    //TODO: Department and Account should work like Contact
+    @OneToOne(cascade = CascadeType.ALL)
+    private Department department;
 
-    // TODO: add contact after employee works
-    public Employee(int employee_id, String password, String name, Double salary, String position, Contact contact) 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Account account;
+
+    public Employee(int employee_id, String password, String name, Double salary, String position, 
+    Contact contact, Department department, Account account)
     {
         this.employee_id = employee_id;
         this.password = password;
@@ -44,13 +41,14 @@ public class Employee implements Serializable
         this.salary = salary;
         this.position = position;
         this.contact = contact;
+        this.department = department;
+        this.account = account;
     }
 
     public Employee(){
 
     }
 
-    //public int employee_id;
     public int getEmployee_id()
     {
         return employee_id;
@@ -59,7 +57,7 @@ public class Employee implements Serializable
     {
         this.employee_id = employee_id;
     }
-    //private String password;
+
     public String getPassword()
     {
         return password;
@@ -68,7 +66,7 @@ public class Employee implements Serializable
     {
         this.password = password;
     }
-    //private String name;
+
     public String getName()
     {
         return name;
@@ -77,7 +75,7 @@ public class Employee implements Serializable
     {
         this.name = name;
     }
-    //private Double salary;
+
     public Double getSalary()
     {
         return salary;
@@ -86,7 +84,7 @@ public class Employee implements Serializable
     {
         this.salary = salary;
     }
-    //private String position;
+
     public String getPosition()
     {
         return position;
@@ -95,7 +93,6 @@ public class Employee implements Serializable
     {
         this.position = position;
     }
-    //private Contact contact;
     
     public Contact getContact()
     {
@@ -105,6 +102,23 @@ public class Employee implements Serializable
     {
         this.contact = contact;
     } 
+
+    public Department getDepartment()
+    {
+        return department;
+    }
+    public void setDepartment(Department department)
+    {
+        this.department = department;
+    }
     
+    public Account getAccount()
+    {
+        return account;
+    }
+    public void setAccount(Account account)
+    {
+        this.account = account;
+    }
     
 }

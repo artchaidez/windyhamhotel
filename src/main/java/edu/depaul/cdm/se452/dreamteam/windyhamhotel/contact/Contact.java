@@ -6,8 +6,6 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-// Note: Is contact going to work like Bill, where it is part of Reservations?
-// Contact must work for both Guest and Employee? 
 @Entity
 @Data
 @Table(name = "contact")
