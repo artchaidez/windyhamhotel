@@ -1,90 +1,124 @@
 package edu.depaul.cdm.se452.dreamteam.windyhamhotel.employee;
 
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
-import lombok.Data;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.account.Account;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.contact.Contact;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.department.Department;
 
+import lombok.Data;
 import javax.persistence.*;
-import java.time.LocalDate;
+
+import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "Employee")
-public class Employee {
+@Table(name = "employee")
+public class Employee implements Serializable
+{
     @Id
-    @GeneratedValue
-    @Column(name = "employee_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int employee_id;
 
-    @Column(name = "password")
     private String password;
+    private String name;
+    private Double salary;
+    private String position;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Contact contact; 
 
-    /*
-        ----  makeReservation() ----
-        Makes a reservation and adds the data to the database after being passed all the data from the Front End
+    @OneToOne(cascade = CascadeType.ALL)
+    private Department department;
 
-        TODO:: Make this send the data to the database, receive it from the Front End
-     */
+    @OneToOne(cascade = CascadeType.ALL)
+    private Account account;
 
-    public void makeReservation(int id, int adult, int child, LocalDate checkIn, LocalDate checkOut, Room room, Guest guest)
+    public Employee(int employee_id, String password, String name, Double salary, String position, 
+    Contact contact, Department department, Account account)
     {
-        //This can be implemented the same way that we implement it in Reservation
+        this.employee_id = employee_id;
+        this.password = password;
+        this.name = name;
+        this.salary = salary;
+        this.position = position;
+        this.contact = contact;
+        this.department = department;
+        this.account = account;
+    }
 
+    public Employee(){
 
     }
 
-
-    /*
-        ---- updateReservation() ----
-        Updates an existing reservation - takes in all of the data, compares it to what is currently in our database to
-        figure out what needs to be changed.
-
-        TODO:: Make this send the data to the database, receive it from the Front End
-         Takes in ID# of the order so it knows what order to update
-     */
-
-    public void updateReservation(int id)
+    public int getEmployee_id()
     {
-
+        return employee_id;
+    }
+    public void setEmployee_id(int employee_id)
+    {
+        this.employee_id = employee_id;
     }
 
-
-    /*
-        ---- cancelReservation() ----
-        Cancels a reservation given the ID by deleting it from our database
-
-        TODO:: Delete data from our Database given the ID# of the Order
-         Takes in ID# of the order so it knows what order to cancel
-     */
-
-    public void cancelReservation(int id)
+    public String getPassword()
     {
-
+        return password;
+    }
+    public void setPassword(String password)
+    {
+        this.password = password;
     }
 
-
-    /*
-        ---- signIn() ----
-        Validates that the email and password given to us match what is in our DB
-
-        TODO:: Make this send the data to the database, receive it from the Front End
-         Should basically just be a verification check that the email and password match what's in our Database
-     */
-
-    public void signIn(String email, String password)
+    public String getName()
     {
-
+        return name;
+    }
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
-
-    //TODO:: placeholder
-    //As said in Reservation.java, this seems unnecessary (and wrong?) to handle on the back end
-
-    public void signOut()
+    public Double getSalary()
     {
-
+        return salary;
+    }
+    public void setSalary(Double salary)
+    {
+        this.salary = salary;
     }
 
+    public String getPosition()
+    {
+        return position;
+    }
+    public void setPosition(String position)
+    {
+        this.position = position;
+    }
+    
+    public Contact getContact()
+    {
+        return contact;
+    }
+    public void setContact(Contact contact)
+    {
+        this.contact = contact;
+    } 
 
+    public Department getDepartment()
+    {
+        return department;
+    }
+    public void setDepartment(Department department)
+    {
+        this.department = department;
+    }
+    
+    public Account getAccount()
+    {
+        return account;
+    }
+    public void setAccount(Account account)
+    {
+        this.account = account;
+    }
+    
 }
