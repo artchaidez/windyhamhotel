@@ -8,6 +8,8 @@ import edu.depaul.cdm.se452.dreamteam.windyhamhotel.hotel.Hotel;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.hotel.HotelRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.address.Address;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.address.AddressRepository;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.review.Review;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.review.ReviewRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.RoomRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -51,6 +53,16 @@ public class WindyhamhotelApplication {
 			Bill bill = new Bill("2021-5-20","40", "400", "440");
 			Reservation reservation = new Reservation(2, 2, 3, "2012-5-1", "2021-5-3", 100, guest,bill);
 			reservationRepository.save(reservation);
+		};
+	}
+
+	@Bean
+	CommandLineRunner runner4(ReviewRepository reviewRepository) {
+		return args -> {
+			Review review = new Review( "Adam",  "5",  "May 14, 2021",  "Great place to stay!!!");
+
+
+			reviewRepository.save(review);
 		};
 	}
 
