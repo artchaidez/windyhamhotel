@@ -1,68 +1,43 @@
 package edu.depaul.cdm.se452.dreamteam.windyhamhotel.review;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "reviews")
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.Data;
+
+@Data
+@Document (collection = "Review")
 public class Review {
+
+    @Transient
+    public static final String SEQUENCE_NAME = "reviews_sequences";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int reviewID;
-
+    private long id;
+    
+    @NotBlank
+    @Size(max=100)
+    @Indexed(unique=true)
     private String name;
-    private String rating;
+
+    @NotBlank
+    @Size(max=100)
+    @Indexed(unique=true)
+    private String review;
+
     private String date;
-    private String comment;
 
+    public Review() {}
 
-    public Review(){}
-
-    public Review(String name, String rating, String date, String comment) {
+    public Review(String name, String review,String date) {
         this.name = name;
-        this.rating = rating;
+        this.review = review;
         this.date = date;
-        this.comment = comment;
-    }
-
-    public int getReviewID() {
-        return reviewID;
-    }
-
-    public void setReviewID(int reviewID) {
-        this.reviewID = reviewID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+    }    
 }

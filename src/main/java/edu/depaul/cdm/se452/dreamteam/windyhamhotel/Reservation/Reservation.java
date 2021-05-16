@@ -2,11 +2,17 @@ package edu.depaul.cdm.se452.dreamteam.windyhamhotel.Reservation;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.bill.Bill;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
 import lombok.Data;
-import javax.persistence.*;
 
 @Data
 @Entity
@@ -25,20 +31,20 @@ public class Reservation implements Serializable {
     private int room_id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Guest guest_id;
+    private Guest guest;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Bill bill;
 
 
-    public Reservation(int adult, int child, int days, String checkin, String checkout, int room_id, Guest guest_id, Bill bill) {
+    public Reservation(int adult, int child, int days, String checkin, String checkout, int room_id, Guest guest, Bill bill) {
         this.adult = adult;
         this.child = child;
         this.days = days;
         this.checkin = checkin;
         this.checkout = checkout;
         this.room_id = room_id;
-        this.guest_id = guest_id;
+        this.guest = guest;
         this.bill = bill;
     }
 
@@ -102,12 +108,12 @@ public class Reservation implements Serializable {
         this.room_id = room_id;
     }
 
-    public Guest getGuest_id() {
-        return guest_id;
+    public Guest getGuest() {
+        return guest;
     }
 
-    public void setGuest_id(Guest guest_id) {
-        this.guest_id = guest_id;
+    public void setGuest(Guest guest) {
+        this.guest = guest;
     }
 
     public Bill getBill() {
