@@ -19,10 +19,15 @@ public class RoomController {
     @Autowired
     private RoomRepository roomRepository;
 
-    @GetMapping("/available")
-    public List<Room> getAvaiableRoomAndType() {
+    @GetMapping("/hotel/{id}")
+    public List<Room> getAllRoomsByHotel(@PathVariable(value = "id") Long hotelId) {
+        return roomRepository.findByHotelId(hotelId);
+    }
+
+    @GetMapping("/hotel/{id}/available")
+    public List<Room> getAvaiableRoomAndTypeByHotel(@PathVariable(value = "id") Long hotelId) {
         Map<String, Room> availableRooms = new HashMap<>();
-        List<Room> rooms = getAllRooms();
+        List<Room> rooms = getAllRoomsByHotel(hotelId);
 
         for (Room room : rooms) {
             if (!availableRooms.containsKey(room.getRoom_type()) && room.getRoom_status() == "Vacant") {
@@ -33,6 +38,21 @@ public class RoomController {
         List<Room> differentTypeRooms = new ArrayList<>(availableRooms.values());
         return differentTypeRooms;
     }
+
+//    @GetMapping("/available")
+//    public List<Room> getAvaiableRoomAndType() {
+//        Map<String, Room> availableRooms = new HashMap<>();
+//        List<Room> rooms = getAllRooms();
+//
+//        for (Room room : rooms) {
+//            if (!availableRooms.containsKey(room.getRoom_type()) && room.getRoom_status() == "Vacant") {
+//                availableRooms.put(room.getRoom_type(),room);
+//            }
+//        }
+//
+//        List<Room> differentTypeRooms = new ArrayList<>(availableRooms.values());
+//        return differentTypeRooms;
+//    }
 
     // get all rooms
     @GetMapping

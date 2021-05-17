@@ -48,7 +48,7 @@ public class GuestController {
         existingGuest.setFirst_name(guest.getFirst_name());
         existingGuest.setLast_name(guest.getLast_name());
         existingGuest.setEmail_addr(guest.getEmail_addr());
-        existingGuest.setPassword(guest.getPassword());
+        // existingGuest.setPassword(guest.getPassword());
         existingGuest.setPhone_number(guest.getPhone_number());
         return this.guestRepository.save(existingGuest);
 

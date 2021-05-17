@@ -41,10 +41,48 @@ public class Guest
         this.first_name = first_name;
         this.last_name = last_name;
         this.email_addr = email_addr;
-        //this.password = password;
         this.phone_number = phone_number;
     }
 
     public Guest () {}
 
+    public int getGuest_id() {
+        return guest_id;
+    }
+
+    public void setGuest_id(int guest_id) {
+        this.guest_id = guest_id;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public String getEmail_addr() {
+        return email_addr;
+    }
+
+    public void setEmail_addr(String email_addr) {
+        this.email_addr = email_addr;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
 }

@@ -30,6 +30,8 @@ public class Reservation implements Serializable {
 
     private int room_id;
 
+    private int hotel_id;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Guest guest;
 
@@ -37,7 +39,7 @@ public class Reservation implements Serializable {
     private Bill bill;
 
 
-    public Reservation(int adult, int child, int days, String checkin, String checkout, int room_id, Guest guest, Bill bill) {
+    public Reservation(int adult, int child, int days, String checkin, String checkout, int room_id, Guest guest, Bill bill, int hotel_id) {
         this.adult = adult;
         this.child = child;
         this.days = days;
@@ -46,10 +48,19 @@ public class Reservation implements Serializable {
         this.room_id = room_id;
         this.guest = guest;
         this.bill = bill;
+        this.hotel_id = hotel_id;
     }
 
     public Reservation() {
 
+    }
+
+    public int getHotel_id() {
+        return hotel_id;
+    }
+
+    public void setHotel_id(int hotel_id) {
+        this.hotel_id = hotel_id;
     }
 
     public long getReservation_id() {

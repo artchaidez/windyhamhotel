@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/hotels")
+@CrossOrigin(origins = "http://localhost:8081")
 public class HotelController {
     @Autowired
     private HotelRepository hotelRepository;
@@ -37,7 +38,6 @@ public class HotelController {
                 .orElseThrow(() -> new ResourceNotFoundException("Hotel not found with id: " + hotelId));
 
         existingHotel.setName(hotel.getName());
-        existingHotel.setNumberOfRoom(hotel.getNumberOfRoom());
 
         Address existingAddress = existingHotel.getHotelAddress();
         Address newAddress = hotel.getHotelAddress();
