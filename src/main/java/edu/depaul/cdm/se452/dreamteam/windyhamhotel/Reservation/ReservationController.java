@@ -90,6 +90,10 @@ public class ReservationController {
         Reservation existingReservation = this.reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new ResourceNotFoundException("Reservation not found with id: " + reservationId));
 
+        Room existingRoom = this.roomRepository.findById(existingReservation.getRoom_id())
+                .orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + existingReservation.getRoom_id()));
+        existingRoom.setRoom_status("Vacant");
+        
         this.reservationRepository.delete(existingReservation);
 
         return ResponseEntity.ok().build();
