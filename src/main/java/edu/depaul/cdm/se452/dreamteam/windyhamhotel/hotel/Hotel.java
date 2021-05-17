@@ -4,20 +4,21 @@ import edu.depaul.cdm.se452.dreamteam.windyhamhotel.address.Address;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "hotels")
-public class Hotel {
+public class Hotel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    long id;
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Room> rooms;
 
     public Hotel(String name, Address address) {

@@ -25,7 +25,7 @@ public class WindyhamhotelApplication {
 	@Bean
 	CommandLineRunner runner1(HotelRepository hotelRepository, AddressRepository hotelAddressRepository, RoomRepository roomRepository) {
 		return args -> {
-			Address address1 = new Address("IL", "Chicago", "4141 N State", 60601);
+			Address address1 = new Address("IL", "Chicago", "4141 N State", "60601");
 			Hotel hotel1 = new Hotel("WindyHam-Chicago", address1);
 			hotelRepository.save(hotel1);
 			roomRepository.save(new Room(100, 200.00, "VIP Room", "This is room 100", "Vacant", hotel1));
@@ -35,7 +35,7 @@ public class WindyhamhotelApplication {
 			roomRepository.save(new Room(104, 240.00, "Regular Room", "This is room 104", "Vacant", hotel1));
 
 
-			Address address2 = new Address("NY", "New York", "4141 N State", 60601);
+			Address address2 = new Address("NY", "New York", "4141 N State", "60601");
 			Hotel hotel2 = new Hotel("WindyHam-New York", address2);
 			hotelRepository.save(hotel2);
 			roomRepository.save(new Room(100, 200.00, "VIP Room", "This is room 100", "Vacant", hotel2));
