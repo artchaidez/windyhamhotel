@@ -6,18 +6,16 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "department")
+@Table(name = "departments")
 public class Department implements Serializable 
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int departmentID;
-
     private String departmentName;
 
-    public Department(int departmentID, String departmentName)
+    public Department(String departmentName)
     {
-        this.departmentID = departmentID;
         this.departmentName = departmentName;
     }
 

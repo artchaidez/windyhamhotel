@@ -7,11 +7,13 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "account")
+@Table(name = "accounts")
 public class Account implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
     private long accountNumber; // told to make this long
 
     private String accountName;
@@ -24,6 +26,14 @@ public class Account implements Serializable
 
     public Account() {
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public long getAccountNumber()

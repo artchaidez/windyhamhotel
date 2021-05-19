@@ -11,14 +11,14 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "employee")
+@Table(name = "employees")
 public class Employee implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int employee_id;
 
-    private String password;
+//    private String password;
     private String name;
     private Double salary;
     private String position;
@@ -32,11 +32,9 @@ public class Employee implements Serializable
     @OneToOne(cascade = CascadeType.ALL)
     private Account account;
 
-    public Employee(int employee_id, String password, String name, Double salary, String position, 
+    public Employee(String name, Double salary, String position,
     Contact contact, Department department, Account account)
     {
-        this.employee_id = employee_id;
-        this.password = password;
         this.name = name;
         this.salary = salary;
         this.position = position;
@@ -58,14 +56,14 @@ public class Employee implements Serializable
         this.employee_id = employee_id;
     }
 
-    public String getPassword()
-    {
-        return password;
-    }
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
+//    public String getPassword()
+//    {
+//        return password;
+//    }
+//    public void setPassword(String password)
+//    {
+//        this.password = password;
+//    }
 
     public String getName()
     {
