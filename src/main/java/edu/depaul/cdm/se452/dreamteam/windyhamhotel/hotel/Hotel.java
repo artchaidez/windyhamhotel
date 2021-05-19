@@ -1,28 +1,24 @@
 package edu.depaul.cdm.se452.dreamteam.windyhamhotel.hotel;
 
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.address.Address;
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "hotels")
-public class Hotel implements Serializable {
+public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    private long id;
     private String name;
+    private int numberOfRoom;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
-    private List<Room> rooms;
-
-    public Hotel(String name, Address address) {
+    public Hotel(String name, int numberOfRoom, Address address) {
         this.name = name;
+        this.numberOfRoom = numberOfRoom;
         this.address = address;
     }
 
@@ -46,6 +42,13 @@ public class Hotel implements Serializable {
         this.name = name;
     }
 
+    public int getNumberOfRoom() {
+        return numberOfRoom;
+    }
+
+    public void setNumberOfRoom(int numberOfRoom) {
+        this.numberOfRoom = numberOfRoom;
+    }
 
     public Address getHotelAddress() {
         return address;

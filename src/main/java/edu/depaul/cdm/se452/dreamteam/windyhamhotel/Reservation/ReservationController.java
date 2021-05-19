@@ -1,8 +1,6 @@
 package edu.depaul.cdm.se452.dreamteam.windyhamhotel.Reservation;
 
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.bill.Bill;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.exception.ResourceNotFoundException;
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,41 +46,19 @@ public class ReservationController {
         Reservation existingReservation = this.reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new ResourceNotFoundException("Reservation not found with id: " + reservationId));
 
-        existingReservation.setAdult(reservation.getAdult());
-
-        existingReservation.setCheckin(reservation.getCheckin());
-        existingReservation.setCheckout(reservation.getCheckout());
-        existingReservation.setChild(reservation.getChild());
-        existingReservation.setDays(reservation.getDays());
-        existingReservation.setHotel_id(reservation.getHotel_id());
-
-
-        Bill bill = reservation.getBill();
-        Bill existingBill = existingReservation.getBill();
-
-        existingBill.setAmount(bill.getAmount());
-        existingBill.setDate(bill.getDate());
-        existingBill.setRoomTotalPrice(bill.getRoomTotalPrice());
-        existingBill.setTax(bill.getTax());
-
-        Guest guest = reservation.getGuest();
-        Guest existingGuest = existingReservation.getGuest();
-
-        existingGuest.setPhone_number(guest.getPhone_number());
-        existingGuest.setLast_name(guest.getLast_name());
-        existingGuest.setFirst_name(guest.getFirst_name());
-        existingGuest.setEmail_addr(guest.getEmail_addr());
-
-        Room existingRoom = this.roomRepository.findById(existingReservation.getRoom_id())
-                .orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + existingReservation.getRoom_id()));
-        existingRoom.setRoom_status("Vacant");
-
-        existingReservation.setRoom_id(reservation.getRoom_id());
-        Room updatedRoom = this.roomRepository.findById(reservation.getRoom_id())
-                .orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + reservation.getRoom_id()));
-        updatedRoom.setRoom_status("Occupied");
+//        System.out.println(existingReservation.getAdult());
+//
+//        existingReservation.setAdult(reservation.getAdult());
+//        existingReservation.setAmount(reservation.getAmount());
+//        existingReservation.setChild(reservation.getChild());
+//        existingReservation.setCheckin(reservation.getCheckin());
+//        existingReservation.setCheckout(reservation.getCheckout());
+//        existingReservation.setDays(reservation.getDays());
+//        existingReservation.setGuest_id(reservation.getGuest_id());
+//        existingReservation.setRoom_number(reservation.getRoom_number());
 
         return this.reservationRepository.save(existingReservation);
+
     }
 
     @DeleteMapping("/{id}")
@@ -90,10 +66,6 @@ public class ReservationController {
         Reservation existingReservation = this.reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new ResourceNotFoundException("Reservation not found with id: " + reservationId));
 
-        Room existingRoom = this.roomRepository.findById(existingReservation.getRoom_id())
-                .orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + existingReservation.getRoom_id()));
-        existingRoom.setRoom_status("Vacant");
-        
         this.reservationRepository.delete(existingReservation);
 
         return ResponseEntity.ok().build();
