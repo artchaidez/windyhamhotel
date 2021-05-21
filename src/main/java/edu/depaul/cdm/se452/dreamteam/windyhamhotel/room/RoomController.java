@@ -19,19 +19,18 @@ public class RoomController {
     @Autowired
     private RoomRepository roomRepository;
 
-    @GetMapping("/available")
-    public List<Room> getAvaiableRoomAndType() {
+
+    @GetMapping("hotel/{id}/available")
+    public List<Room> getAvaiableRoomAndTypeByHotel(@PathVariable(value = "id") int hotelId) {
+        List<Room> rooms = this.roomRepository.findRoomByHotelId(hotelId);
         Map<String, Room> availableRooms = new HashMap<>();
-        List<Room> rooms = getAllRooms();
 
         for (Room room : rooms) {
             if (!availableRooms.containsKey(room.getRoom_type()) && room.getRoom_status() == "Vacant") {
-                availableRooms.put(room.getRoom_type(),room);
+                availableRooms.put(room.getRoom_type(), room);
             }
         }
-
-        List<Room> differentTypeRooms = new ArrayList<>(availableRooms.values());
-        return differentTypeRooms;
+        return new ArrayList<>(availableRooms.values());
     }
 
     // get all rooms
@@ -43,7 +42,7 @@ public class RoomController {
     // get a single room
     @GetMapping("/{id}")
     public Room getRoomById(@PathVariable(value = "id") int roomId) {
-        System.out.println("getRoomById");
+//        System.out.println("getRoomById");
         return this.roomRepository.findById(roomId)
                 .orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + roomId));
     }

@@ -1,6 +1,10 @@
 package edu.depaul.cdm.se452.dreamteam.windyhamhotel.Reservation;
 
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.bill.Bill;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.bill.BillRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.exception.ResourceNotFoundException;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.GuestRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +22,8 @@ public class ReservationController {
 
     @Autowired
     private RoomRepository roomRepository;
+    private GuestRepository guestRepository;
+    private BillRepository billRepository;
 
     @GetMapping
     public List<Reservation> getAllReservations() {
@@ -32,9 +38,9 @@ public class ReservationController {
 
     @PostMapping
     public Reservation createReservation(@RequestBody Reservation reservation) {
-        int roomNumber = reservation.getRoom_id();
-        Room existingRoom = this.roomRepository.findById(roomNumber)
-                .orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + roomNumber));
+        int roomId = reservation.getRoom_id();
+        Room existingRoom = this.roomRepository.findById(roomId)
+                .orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + roomId));
         existingRoom.setRoom_status("Occupied");
 
         return this.reservationRepository.save(reservation);
@@ -46,16 +52,32 @@ public class ReservationController {
         Reservation existingReservation = this.reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new ResourceNotFoundException("Reservation not found with id: " + reservationId));
 
-//        System.out.println(existingReservation.getAdult());
-//
-//        existingReservation.setAdult(reservation.getAdult());
-//        existingReservation.setAmount(reservation.getAmount());
-//        existingReservation.setChild(reservation.getChild());
-//        existingReservation.setCheckin(reservation.getCheckin());
-//        existingReservation.setCheckout(reservation.getCheckout());
-//        existingReservation.setDays(reservation.getDays());
-//        existingReservation.setGuest_id(reservation.getGuest_id());
-//        existingReservation.setRoom_number(reservation.getRoom_number());
+
+        existingReservation.setHotel_id(reservation.getHotel_id());
+        existingReservation.setDays(reservation.getDays());
+        existingReservation.setChild(reservation.getChild());
+        existingReservation.setCheckout(reservation.getCheckout());
+        existingReservation.setCheckin(reservation.getCheckin());
+        existingReservation.setAdult(reservation.getAdult());
+
+        Room existingRoom = this.roomRepository.findById(existingReservation.getRoom_id()).orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + existingReservation.getRoom_id()));
+        existingRoom.setRoom_status("Vacant");
+
+        existingReservation.setRoom_id(reservation.getRoom_id());
+        Room room = this.roomRepository.findById(reservation.getRoom_id()).orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + reservation.getRoom_id()));
+        room.setRoom_status("Occupied");
+
+        Guest existingGuest = existingReservation.getGuest();
+        existingGuest.setEmail_addr(reservation.getGuest().getEmail_addr());
+        existingGuest.setFirst_name(reservation.getGuest().getFirst_name());
+        existingGuest.setLast_name(reservation.getGuest().getLast_name());
+        existingGuest.setPhone_number(reservation.getGuest().getPhone_number());
+
+        Bill existingBill = existingReservation.getBill();
+        existingBill.setTax(reservation.getBill().getTax());
+        existingBill.setRoomTotalPrice(reservation.getBill().getRoomTotalPrice());
+        existingBill.setDate(reservation.getBill().getDate());
+        existingBill.setAmount(reservation.getBill().getAmount());
 
         return this.reservationRepository.save(existingReservation);
 

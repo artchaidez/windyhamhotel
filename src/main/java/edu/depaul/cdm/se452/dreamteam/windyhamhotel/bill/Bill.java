@@ -34,4 +34,43 @@ public class Bill implements Serializable {
 
     }
 
+    public long getBill_id() {
+        return bill_id;
+    }
+
+    public void setBill_id(long bill_id) {
+        this.bill_id = bill_id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTax() {
+        return tax;
+    }
+
+    public void setTax(String tax) {
+        this.tax = tax;
+    }
+
+    public String getRoomTotalPrice() {
+        return roomTotalPrice;
+    }
+
+    public void setRoomTotalPrice(String roomTotalPrice) {
+        this.roomTotalPrice = roomTotalPrice;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
 }

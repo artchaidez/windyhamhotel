@@ -1,5 +1,9 @@
 package edu.depaul.cdm.se452.dreamteam.windyhamhotel.employee;
 
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.account.Account;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.address.Address;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.contact.Contact;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.department.Department;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -46,14 +50,29 @@ public class EmployeeController
         Employee existingEmployee = this.employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + employeeId));
 
-        // NOTE: Might not need all this.
-        //existingEmployee.setEmployee_id(employee.getEmployee_id());
-        //existingEmployee.setPassword(employee.getPassword());
-        //existingEmployee.setName(employee.getName());
-        //existingEmployee.setSalary(employee.getSalary());
-        //existingEmployee.setPosition(employee.getPosition());
-        
-        //existingEmployee.setContact(employee.getContact());
+        existingEmployee.setName(employee.getName());
+        existingEmployee.setPosition(employee.getPosition());
+        existingEmployee.setSalary(employee.getSalary());
+
+        Account existingAccount = existingEmployee.getAccount();
+        existingAccount.setAccountName(employee.getAccount().getAccountName());
+        existingAccount.setAccountNumber(employee.getAccount().getAccountNumber());
+
+        Contact existingContact = existingEmployee.getContact();
+        existingContact.setBirth(employee.getContact().getBirth());
+        existingContact.setEmail(employee.getContact().getEmail());
+        existingContact.setGender(employee.getContact().getGender());
+        existingContact.setName(employee.getContact().getName());
+        existingContact.setPhone(employee.getContact().getPhone());
+
+        Address existingAddress = existingEmployee.getContact().getAddress();
+        existingAddress.setState(employee.getContact().getAddress().getState());
+        existingAddress.setCity(employee.getContact().getAddress().getCity());
+        existingAddress.setStreet(employee.getContact().getAddress().getStreet());
+        existingAddress.setZipCode(employee.getContact().getAddress().getZipCode());
+
+        Department existingDepartment = existingEmployee.getDepartment();
+        existingDepartment.setDepartmentName(employee.getDepartment().getDepartmentName());
 
         return this.employeeRepository.save(existingEmployee);
     }
