@@ -1,15 +1,16 @@
 package edu.depaul.cdm.se452.dreamteam.windyhamhotel.review;
 
+import lombok.Data;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
-
+@Data
 @Entity
 @Table(name = "reviews")
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int reviewID;
+    private long reviewID;
 
     private String name;
     private String rating;
@@ -26,7 +27,7 @@ public class Review {
         this.comment = comment;
     }
 
-    public int getReviewID() {
+    public long getReviewID() {
         return reviewID;
     }
 
