@@ -6,8 +6,12 @@ import edu.depaul.cdm.se452.dreamteam.windyhamhotel.account.Account;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.bill.Bill;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.contact.Contact;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.department.Department;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.drink.Drink;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.drink.DrinkRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.employee.Employee;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.employee.EmployeeRepository;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.food.Food;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.food.FoodRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.hotel.Hotel;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.hotel.HotelRepository;
@@ -54,15 +58,21 @@ public class WindyhamhotelApplication {
 		};
 	}
 
-//	@Bean
-//	CommandLineRunner runner3(ReservationRepository reservationRepository) {
-//		return args -> {
-//			Guest guest = new Guest("Alice", "Blue", "alice@gmail.com", "312-111-111");
-//			Bill bill = new Bill("2021-5-20","40", "400", "440");
-//			Reservation reservation = new Reservation(2, 2, 3, "2012-5-1", "2021-5-3", 100, guest,bill);
-//			reservationRepository.save(reservation);
-//		};
-//	}
+	@Bean
+	CommandLineRunner runner3(DrinkRepository drinkRepository, FoodRepository foodRepository) {
+		return args -> {
+			drinkRepository.deleteAll();
+			drinkRepository.save(new Drink("Coke","Drink", 2.99));
+//			drinkRepository.save(new Drink("Orange", 4.99));
+//			drinkRepository.save(new Drink("Tea", 3.99));
+
+			foodRepository.deleteAll();
+			foodRepository.save(new Food("Pizza", "Food", 21.99));
+//			foodRepository.save(new Food("Soup", 5.99));
+//			foodRepository.save(new Food("Salad", 7.99));
+
+		};
+	}
 
 	@Bean
 	CommandLineRunner runner4(ReviewRepository reviewRepository) {

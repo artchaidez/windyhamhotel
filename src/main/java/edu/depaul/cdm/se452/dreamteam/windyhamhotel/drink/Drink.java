@@ -23,13 +23,15 @@ public class Drink {
     @Id
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Guest guest;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private Guest guest;
 
     @NotBlank
     @Size(max=100)
     @Indexed(unique=true)
     private String name;
+
+    private String type;
 
     private double price;
 
@@ -37,12 +39,48 @@ public class Drink {
 
     public Drink(){}
 
-    public Drink(Guest guest, String name, double price) {
-        this.guest = guest;
+//    public Drink(Guest guest, String name, double price) {
+//        this.guest = guest;
+//        this.name = name;
+//        this.price = price;
+//    }
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Drink(@NotBlank @Size(max = 100) String name, String type, double price) {
         this.name = name;
+        this.type = type;
         this.price = price;
     }
 
+    public long getId() {
+        return id;
+    }
 
-    
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }

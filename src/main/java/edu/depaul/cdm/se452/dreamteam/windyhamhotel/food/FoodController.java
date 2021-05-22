@@ -8,20 +8,14 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.exception.ResourceNotFoundException;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.service.SequenceGeneratorService;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins="http://localhost:8081")
 public class FoodController {
     @Autowired
     private FoodRepository foodRepository;
@@ -57,10 +51,11 @@ public class FoodController {
         Food existingFood = foodRepository.findById(foodId)
         .orElseThrow(() -> new ResourceNotFoundException("Food not found with id: " + foodId));
 
-        existingFood.setGuest(food.getGuest());
+//        existingFood.setGuest(food.getGuest());
+        existingFood.setType(food.getType());
         existingFood.setName(food.getName());
         existingFood.setPrice(food.getPrice());
-        final Food updatedFood = foodRepository.save(food);
+        final Food updatedFood = foodRepository.save(existingFood);
         return ResponseEntity.ok(updatedFood);
 
     }

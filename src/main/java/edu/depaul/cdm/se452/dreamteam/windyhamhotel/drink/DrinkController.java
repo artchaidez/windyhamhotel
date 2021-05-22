@@ -8,20 +8,14 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.exception.ResourceNotFoundException;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.service.SequenceGeneratorService;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins ="http://localhost:8081")
 public class DrinkController {
     @Autowired
     private DrinkRepository drinkRepository;
@@ -29,6 +23,7 @@ public class DrinkController {
     @Autowired
     private SequenceGeneratorService sequenceGeneratorService;
 
+    @CrossOrigin(origins ="http://localhost:8081")
     @GetMapping("/drinks")
     public List<Drink> getAllDrinks() {
         return this.drinkRepository.findAll();
@@ -57,10 +52,11 @@ public class DrinkController {
         Drink existingDrink = drinkRepository.findById(drinkId)
         .orElseThrow(() -> new ResourceNotFoundException("Drink not found with id: " + drinkId));
 
-        existingDrink.setGuest(drink.getGuest());
+//        existingDrink.setGuest(drink.getGuest());
+        existingDrink.setType(drink.getType());
         existingDrink.setName(drink.getName());
         existingDrink.setPrice(drink.getPrice());
-        final Drink updatedDrink = drinkRepository.save(drink);
+        final Drink updatedDrink = drinkRepository.save(existingDrink);
         return ResponseEntity.ok(updatedDrink);
 
     }
