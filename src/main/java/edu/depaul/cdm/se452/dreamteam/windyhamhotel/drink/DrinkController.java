@@ -20,8 +20,8 @@ public class DrinkController {
     @Autowired
     private DrinkRepository drinkRepository;
 
-    @Autowired
-    private SequenceGeneratorService sequenceGeneratorService;
+//    @Autowired
+//    private SequenceGeneratorService sequenceGeneratorService;
 
     @CrossOrigin(origins ="http://localhost:8081")
     @GetMapping("/drinks")
@@ -41,7 +41,7 @@ public class DrinkController {
 
     @PostMapping("/drinks")
     public Drink createDrink(@Valid @RequestBody Drink drink) {
-        drink.setId(sequenceGeneratorService.generateSequence(drink.SEQUENCE_NAME));
+//        drink.setId(sequenceGeneratorService.generateSequence(drink.SEQUENCE_NAME));
         return drinkRepository.save(drink);
     }
 
@@ -53,6 +53,7 @@ public class DrinkController {
         .orElseThrow(() -> new ResourceNotFoundException("Drink not found with id: " + drinkId));
 
 //        existingDrink.setGuest(drink.getGuest());
+
         existingDrink.setType(drink.getType());
         existingDrink.setName(drink.getName());
         existingDrink.setPrice(drink.getPrice());

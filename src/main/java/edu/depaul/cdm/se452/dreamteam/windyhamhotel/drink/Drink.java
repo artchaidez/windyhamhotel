@@ -17,8 +17,8 @@ import lombok.Data;
 @Document(collection = "Drink")
 public class Drink {
 
-    @Transient
-    public static final String SEQUENCE_NAME = "drinks_sequences";
+//    @Transient
+//    public static final String SEQUENCE_NAME = "drinks_sequences";
 
     @Id
     private long id;
@@ -53,8 +53,16 @@ public class Drink {
     public void setType(String type) {
         this.type = type;
     }
+//
+//    public Drink(@NotBlank @Size(max = 100) String name, String type, double price) {
+//        this.name = name;
+//        this.type = type;
+//        this.price = price;
+//    }
 
-    public Drink(@NotBlank @Size(max = 100) String name, String type, double price) {
+
+    public Drink(long id, @NotBlank @Size(max = 100) String name, String type, double price) {
+        this.id = id;
         this.name = name;
         this.type = type;
         this.price = price;

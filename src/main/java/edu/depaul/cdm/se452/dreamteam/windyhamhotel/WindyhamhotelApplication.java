@@ -62,14 +62,12 @@ public class WindyhamhotelApplication {
 	CommandLineRunner runner3(DrinkRepository drinkRepository, FoodRepository foodRepository) {
 		return args -> {
 			drinkRepository.deleteAll();
-			drinkRepository.save(new Drink("Coke","Drink", 2.99));
-//			drinkRepository.save(new Drink("Orange", 4.99));
-//			drinkRepository.save(new Drink("Tea", 3.99));
+			drinkRepository.save(new Drink(1, "Coke","Drink", 2.99));
+			drinkRepository.save(new Drink(2, "Apple Juice","Drink", 3.99));
 
 			foodRepository.deleteAll();
-			foodRepository.save(new Food("Pizza", "Food", 21.99));
-//			foodRepository.save(new Food("Soup", 5.99));
-//			foodRepository.save(new Food("Salad", 7.99));
+			foodRepository.save(new Food(1,"Pizza", "Food", 15.99));
+			foodRepository.save(new Food(2,"Cake", "Food", 4.99));
 
 		};
 	}

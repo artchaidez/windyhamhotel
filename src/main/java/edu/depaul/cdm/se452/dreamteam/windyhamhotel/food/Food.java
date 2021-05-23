@@ -17,8 +17,8 @@ import lombok.Data;
 @Document(collection = "Food")
 public class Food {
 
-    @Transient
-    public static final String SEQUENCE_NAME = "foods_sequences";
+//    @Transient
+//    public static final String SEQUENCE_NAME = "foods_sequences";
 
     @Id
     private long id;
@@ -52,15 +52,8 @@ public class Food {
 //    }
 
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Food(@NotBlank @Size(max = 100) String name, String type, double price) {
+    public Food(long id, @NotBlank @Size(max = 100) String name, String type, double price) {
+        this.id = id;
         this.name = name;
         this.type = type;
         this.price = price;
@@ -88,5 +81,14 @@ public class Food {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+
+    public String getType() {
+        return type;
     }
 }

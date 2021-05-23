@@ -20,8 +20,8 @@ public class FoodController {
     @Autowired
     private FoodRepository foodRepository;
 
-    @Autowired
-    private SequenceGeneratorService sequenceGeneratorService;
+//    @Autowired
+//    private SequenceGeneratorService sequenceGeneratorService;
 
     @GetMapping("/foods")
     public List<Food> getAllFoods() {
@@ -40,7 +40,7 @@ public class FoodController {
 
     @PostMapping("/foods")
     public Food createFood(@Valid @RequestBody Food food) {
-        food.setId(sequenceGeneratorService.generateSequence(food.SEQUENCE_NAME));
+//        food.setId(sequenceGeneratorService.generateSequence(food.SEQUENCE_NAME));
         return foodRepository.save(food);
     }
 
