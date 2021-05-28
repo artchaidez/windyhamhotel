@@ -4,6 +4,8 @@ import edu.depaul.cdm.se452.dreamteam.windyhamhotel.Reservation.Reservation;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.Reservation.ReservationRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.account.Account;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.bill.Bill;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.complaint.Complaint;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.complaint.ComplaintRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.contact.Contact;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.department.Department;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.drink.Drink;
@@ -23,6 +25,7 @@ import edu.depaul.cdm.se452.dreamteam.windyhamhotel.review.Review;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.review.ReviewRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.RoomRepository;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.service.SequenceGeneratorService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -104,6 +107,23 @@ public class WindyhamhotelApplication {
 			HotelService hotelService2 = new HotelService(2, "Hotel Swimming Pool", "Mon-Sun: 05:00 AM - 07:00 PM", "WindyHam Hotel guests enjoy complimentary access to our feature pool, adult pool  and indoor pool along with chaise lounges, chairs, towels, complete locker facilities, two outdoor whirlpools and a children's splash pad.");
 			hotelServiceRepository.save(hotelService1);
 			hotelServiceRepository.save(hotelService2);
+		};
+	}
+
+	@Bean
+	CommandLineRunner runner6(ComplaintRepository complaintRepository, SequenceGeneratorService sequenceGeneratorService) {
+		return args -> {
+			complaintRepository.deleteAll();
+
+			Complaint complaint1 = new Complaint("Hongli", "Xue", "hongli@gmail.com", "312-4001234", "Check-in takes too long",
+					"It took more than an hour to check us in even though we had a confirmed reservation.");
+			complaint1.setId(sequenceGeneratorService.generateSequence(complaint1.SEQUENCE_NAME));
+			complaintRepository.save(complaint1);
+
+			Complaint complaint2 = new Complaint("Liang", "Gao", "liang@gmail.com", "312-4115239", "Unclean room",
+					"The room did not get cleaned at all during our stay!!");
+			complaint2.setId(sequenceGeneratorService.generateSequence(complaint2.SEQUENCE_NAME));
+			complaintRepository.save(complaint2);
 		};
 	}
 
