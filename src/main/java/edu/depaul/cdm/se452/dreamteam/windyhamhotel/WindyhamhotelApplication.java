@@ -17,6 +17,8 @@ import edu.depaul.cdm.se452.dreamteam.windyhamhotel.hotel.Hotel;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.hotel.HotelRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.address.Address;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.address.AddressRepository;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.hotelServices.HotelService;
+import edu.depaul.cdm.se452.dreamteam.windyhamhotel.hotelServices.HotelServiceRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.review.Review;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.review.ReviewRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
@@ -53,13 +55,11 @@ public class WindyhamhotelApplication {
 			roomRepository.save(new Room(102, 220.00, "Suite", "This is room 102", "Vacant",hotel2));
 			roomRepository.save(new Room(103, 230.00, "VIP Room", "This is room 103", "Vacant",hotel2));
 			roomRepository.save(new Room(104, 240.00, "Regular Room", "This is room 104", "Vacant",hotel2));
-
-
 		};
 	}
 
 	@Bean
-	CommandLineRunner runner3(DrinkRepository drinkRepository, FoodRepository foodRepository) {
+	CommandLineRunner runner2(DrinkRepository drinkRepository, FoodRepository foodRepository) {
 		return args -> {
 			drinkRepository.deleteAll();
 			drinkRepository.save(new Drink(1, "Coke","Drink", 2.99));
@@ -73,7 +73,7 @@ public class WindyhamhotelApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner4(ReviewRepository reviewRepository) {
+	CommandLineRunner runner3(ReviewRepository reviewRepository) {
 		return args -> {
 			Review review = new Review( "Adam",  "5",  "May 14, 2021",  "Great place to stay!!!");
 
@@ -83,7 +83,7 @@ public class WindyhamhotelApplication {
 	}
 
 	@Bean
-    CommandLineRunner runner5(EmployeeRepository employeeRepository) {
+    CommandLineRunner runner4(EmployeeRepository employeeRepository) {
         return args -> {
 			Address address1 = new Address("IL", "Chicago", "4141 N State", 60601);
             Contact contact = new Contact("Paul A", address1, "10/12/98", "Male", "paul@gmail.com", "312-4444");
@@ -95,5 +95,16 @@ public class WindyhamhotelApplication {
             employeeRepository.save(employee1);
         };
     }
+
+	@Bean
+	CommandLineRunner runner5(HotelServiceRepository hotelServiceRepository) {
+		return args -> {
+			hotelServiceRepository.deleteAll();
+			HotelService hotelService1 = new HotelService(1,"Hotel Fitness Center", "Open 24-hours a day with room keycard", "Being away from home can easily interrupt the fitness routine of even those with the best intentions.  WindyHam Hotel makes staying on track a breeze with our 24-hour Fitness Center, located on the third floor. This light-filled space boasts a wide range of cardio equipment (including two fully-connected Peloton Bikes) as well as a large selection of free-weights and weight-assisted lifting equipment, all in an open, energizing environment. An adjoining 75-foot indoor lap pool and locker facilities complete the package, allowing fitness enthusiast of all types maintain their programs while on the road. ");
+			HotelService hotelService2 = new HotelService(2, "Hotel Swimming Pool", "Mon-Sun: 05:00 AM - 07:00 PM", "WindyHam Hotel guests enjoy complimentary access to our feature pool, adult pool  and indoor pool along with chaise lounges, chairs, towels, complete locker facilities, two outdoor whirlpools and a children's splash pad.");
+			hotelServiceRepository.save(hotelService1);
+			hotelServiceRepository.save(hotelService2);
+		};
+	}
 
 }
