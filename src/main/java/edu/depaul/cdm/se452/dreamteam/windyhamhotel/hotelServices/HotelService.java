@@ -16,32 +16,6 @@ import lombok.Data;
 @Data
 @Document(collection = "hotelServices")
 public class HotelService {
-
-//    @Transient
-//    public static final String SEQUENCE_NAME = "services_sequences";
-//
-//    @Id
-//    private long id;
-//
-//    @OneToOne(cascade = CascadeType.ALL)
-//    private Guest guest;
-//
-//    @NotBlank
-//    @Size(max=50)
-//    @Indexed(unique=true)
-//    private String name;
-//
-//    private String date;
-//    private String duration;
-//
-//    public HotelService() {}
-//
-//    public HotelService(Guest guest, String name, String date, String duration) {
-//        this.guest = guest;
-//        this.name = name;
-//        this.date = date;
-//        this.duration = duration;
-//    }
     @Id
     private long id;
 

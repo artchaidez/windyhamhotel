@@ -27,14 +27,6 @@ public class Guest{
 
     }
 
-    public long getGuest_id() {
-        return guest_id;
-    }
-
-    public void setGuest_id(long guest_id) {
-        this.guest_id = guest_id;
-    }
-
     public String getFirst_name() {
         return first_name;
     }

@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.dreamteam.windyhamhotel.Reservation;
+package edu.depaul.cdm.se452.dreamteam.windyhamhotel.reservation;
 
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.bill.Bill;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.bill.BillRepository;

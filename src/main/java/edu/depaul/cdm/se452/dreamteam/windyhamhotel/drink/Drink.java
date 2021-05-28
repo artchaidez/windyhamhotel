@@ -14,7 +14,7 @@ import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
 import lombok.Data;
 
 @Data
-@Document(collection = "Drink")
+@Document(collection = "drinks")
 public class Drink {
 
 //    @Transient

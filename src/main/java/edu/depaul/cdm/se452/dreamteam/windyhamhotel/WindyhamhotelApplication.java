@@ -1,9 +1,6 @@
 package edu.depaul.cdm.se452.dreamteam.windyhamhotel;
 
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.Reservation.Reservation;
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.Reservation.ReservationRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.account.Account;
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.bill.Bill;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.complaint.Complaint;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.complaint.ComplaintRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.contact.Contact;
@@ -14,7 +11,6 @@ import edu.depaul.cdm.se452.dreamteam.windyhamhotel.employee.Employee;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.employee.EmployeeRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.food.Food;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.food.FoodRepository;
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.hotel.Hotel;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.hotel.HotelRepository;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.address.Address;
@@ -76,12 +72,18 @@ public class WindyhamhotelApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner3(ReviewRepository reviewRepository) {
+	CommandLineRunner runner3(ReviewRepository reviewRepository, SequenceGeneratorService sequenceGeneratorService) {
 		return args -> {
-			Review review = new Review( "Adam",  "5",  "May 14, 2021",  "Great place to stay!!!");
 
+			reviewRepository.deleteAll();
+			Review review1 = new Review( "Adam",  "5",  "5/14/2021, 4:11:42 PM",  "Great place to stay!!!");
+			review1.setId(sequenceGeneratorService.generateSequence(review1.SEQUENCE_NAME));
+			reviewRepository.save(review1);
 
-			reviewRepository.save(review);
+			Review review2 = new Review( "Anonymous",  "4",  "5/20/2021, 5:11:00 PM",  "Amazing Hotel!!!");
+			review2.setId(sequenceGeneratorService.generateSequence(review2.SEQUENCE_NAME));
+			reviewRepository.save(review2);
+
 		};
 	}
 

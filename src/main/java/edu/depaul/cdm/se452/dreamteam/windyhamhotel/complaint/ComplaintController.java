@@ -53,8 +53,6 @@ public class ComplaintController {
         Complaint existingComplaint = complaintRepository.findById(complaintId)
         .orElseThrow(() -> new ResourceNotFoundException("Complaint not found with id: " + complaintId));
 
-//        existingComplaint.setDate(complaint.getDate());
-//        existingComplaint.setProblem(complaint.getProblem());
         existingComplaint.setFirstname(complaint.getFirstname());
         existingComplaint.setLastname(complaint.getLastname());
         existingComplaint.setEmail(complaint.getEmail());

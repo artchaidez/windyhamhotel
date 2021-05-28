@@ -18,7 +18,6 @@ public class Employee implements Serializable
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int employee_id;
 
-//    private String password;
     private String name;
     private Double salary;
     private String position;
@@ -46,16 +45,6 @@ public class Employee implements Serializable
     public Employee(){
 
     }
-
-    public int getEmployee_id()
-    {
-        return employee_id;
-    }
-    public void setEmployee_id(int employee_id)
-    {
-        this.employee_id = employee_id;
-    }
-
 
     public String getName()
     {

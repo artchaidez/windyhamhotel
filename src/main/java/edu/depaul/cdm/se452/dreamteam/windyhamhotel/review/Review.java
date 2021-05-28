@@ -1,16 +1,18 @@
 package edu.depaul.cdm.se452.dreamteam.windyhamhotel.review;
 
 import lombok.Data;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 @Data
-@Entity
-@Table(name = "reviews")
+@Document(collection = "reviews")
 public class Review {
+
+    @org.springframework.data.annotation.Transient
+    public static final String SEQUENCE_NAME = "complaint_sequences";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long reviewID;
+    private Long id;
 
     private String name;
     private String rating;
@@ -27,12 +29,16 @@ public class Review {
         this.comment = comment;
     }
 
-    public long getReviewID() {
-        return reviewID;
+    public static String getSequenceName() {
+        return SEQUENCE_NAME;
     }
 
-    public void setReviewID(int reviewID) {
-        this.reviewID = reviewID;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -1,10 +1,9 @@
-package edu.depaul.cdm.se452.dreamteam.windyhamhotel.Reservation;
+package edu.depaul.cdm.se452.dreamteam.windyhamhotel.reservation;
 
 import java.io.Serializable;
 
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.bill.Bill;
 import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
-import edu.depaul.cdm.se452.dreamteam.windyhamhotel.room.Room;
 import lombok.Data;
 import javax.persistence.*;
 

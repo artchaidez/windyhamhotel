@@ -14,17 +14,11 @@ import edu.depaul.cdm.se452.dreamteam.windyhamhotel.guest.Guest;
 import lombok.Data;
 
 @Data
-@Document(collection = "Food")
+@Document(collection = "foods")
 public class Food {
-
-//    @Transient
-//    public static final String SEQUENCE_NAME = "foods_sequences";
 
     @Id
     private long id;
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    private Guest guest;
 
     @NotBlank
     @Size(max=100)
@@ -35,22 +29,7 @@ public class Food {
 
     private double price;
 
-    
-
     public Food(){}
-
-//    public Food(Guest guest, String name, double price) {
-//        this.guest = guest;
-//        this.name = name;
-//        this.price = price;
-//    }
-
-
-//    public Food(@NotBlank @Size(max = 100) String name, double price) {
-//        this.name = name;
-//        this.price = price;
-//    }
-
 
     public Food(long id, @NotBlank @Size(max = 100) String name, String type, double price) {
         this.id = id;
@@ -86,7 +65,6 @@ public class Food {
     public void setType(String type) {
         this.type = type;
     }
-
 
     public String getType() {
         return type;
