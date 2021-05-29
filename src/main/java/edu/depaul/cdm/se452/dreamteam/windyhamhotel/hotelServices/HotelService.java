@@ -34,6 +34,8 @@ public class HotelService {
         this.description = description;
     }
 
+    public HotelService() {}
+
     public long getId() {
         return id;
     }
